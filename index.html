@@ -1,4 +1,167 @@
-<!-- Rules Section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aego SMP | Custom Survival Experience</title>
+    <link rel="stylesheet" href="design.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-left">
+            <img src="skull.png" alt="Logo" class="nav-icon">
+            <span>AEGO SMP</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#hardware">Hardware</a>
+            <a href="#rules">Rules</a>
+            <a href="https://discord.gg/yourinvite" target="_blank" class="btn-discord">
+                <i class="fab fa-discord"></i> Discord
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="home">
+        
+        <!-- Hero Section with Parallax Logo -->
+        <header class="hero">
+            <div class="interactive-logo" id="parallaxLogo">
+                <img src="skull.png" alt="Skull Logo" class="parallax-layer layer-skull">
+                <img src="aego.png" alt="AEGO Text" class="parallax-layer layer-aego">
+            </div>
+            <p class="hero-subtitle">A custom community survival experience built for true adventurers.</p>
+        </header>
+
+        <!-- Server IP & Status Card -->
+        <section class="card">
+            <h2 class="card-title">Join The Adventure</h2>
+            <div class="ip-container">
+                <span class="ip-text" id="serverIp">play.aegosmp.com</span>
+                <button class="btn-copy" onclick="copyIp()">
+                    <i class="fas fa-copy"></i> Copy IP
+                </button>
+            </div>
+        </section>
+
+        <!-- Countdown / Launch Status Card -->
+        <section class="card">
+            <h2 class="card-title">Server Launch Countdown</h2>
+            <div class="countdown-grid" id="countdown">
+                <div class="time-box">
+                    <span class="time-value" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-value" id="hours">00</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-value" id="minutes">00</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-value" id="seconds">00</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="card" id="features">
+            <h2 class="card-title">Server Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Custom Plugins</h3>
+                    <p>Tailored mechanics, custom items, and fresh gameplay loops designed to keep exploration exciting.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Active Community</h3>
+                    <p>Build towns, form alliances, trade resources, and make friends in a welcoming environment.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Lag-Free Performance</h3>
+                    <p>Optimized backend server infrastructure ensuring buttery smooth 20 TPS during heavy sessions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hardware Specs Section -->
+        <section class="card" id="hardware">
+            <h2 class="card-title"><i class="fas fa-server"></i> Server Hardware</h2>
+            <p class="card-description">Powered by top-tier performance hardware to guarantee a flawless, zero-lag experience.</p>
+            <div class="hardware-grid">
+                <div class="hardware-item">
+                    <i class="fas fa-microchip hardware-icon"></i>
+                    <div>
+                        <h4>Processor</h4>
+                        <p>AMD Ryzen 9 9950X</p>
+                    </div>
+                </div>
+                <div class="hardware-item">
+                    <i class="fas fa-memory hardware-icon"></i>
+                    <div>
+                        <h4>Dedicated RAM</h4>
+                        <p>8 GB High-Speed DDR5</p>
+                    </div>
+                </div>
+                <div class="hardware-item">
+                    <i class="fas fa-hdd hardware-icon"></i>
+                    <div>
+                        <h4>Storage</h4>
+                        <p>20 GB NVMe SSD Space</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section class="card" id="rules">
+            <h2 class="card-title"><i class="fas fa-book-open"></i> Server Rules</h2>
+            <p class="card-description">Welcome to the wild. Here are the few guidelines we enforce:</p>
+            <ul class="rules-list">
+                <li>
+                    <i class="fas fa-skull-crossbones" style="color: #ef4444;"></i>
+                    <span><strong>Stealing & Raiding Allowed:</strong> Bases are fair game. Lock up your loot or risk losing it to clever thieves.</span>
+                </li>
+                <li>
+                    <i class="fas fa-skull-crossbones" style="color: #ef4444;"></i>
+                    <span><strong>Open PvP & Traps:</strong> Non-consensual combat, ambushes, and deadly traps are fully permitted anywhere. Trust no one.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>No Hacking or Exploits:</strong> Using hacked clients, X-ray texture packs, duping exploits, or unfair advantages will result in an instant ban.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Be Respectful in Chat:</strong> Zero tolerance for hate speech, harassment, severe toxicity, or spamming global channels. Keep it civil out-of-game.</span>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Aego SMP. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html><!-- Rules Section -->
         <section class="card" id="rules">
             <h2 class="card-title"><i class="fas fa-book-open"></i> Server Rules</h2>
             <p class="card-description">Welcome to the wild. Here are the few guidelines we enforce:</p>
