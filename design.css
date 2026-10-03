@@ -138,22 +138,21 @@ main {
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6)); 
 }
 
-/* 1. The Skull */
+/* 1. The Skull - Pushed higher up with a higher z-index so it stays on top */
 .layer-skull {
-    width: 28%; 
-    top: -15%;     
-    transform: translateX(-50%) translateZ(10px); 
-    z-index: 1;
+    width: 30%; 
+    top: -20%;     
+    transform: translateX(-50%) translateZ(50px); 
+    z-index: 10;
 }
 
 /* 2. The Combined AEGO Text */
 .layer-aego {
     width: 100%; 
     top: 10%;    
-    transform: translateX(-50%) translateZ(40px);
+    transform: translateX(-50%) translateZ(20px);
     z-index: 2;
 }
-
 /* Subtitle cleanly separated below the logo */
 .hero-subtitle {
     color: var(--text-muted);
