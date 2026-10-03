@@ -18,7 +18,10 @@
     scroll-behavior: smooth;
 }
 
-body {
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     background-color: var(--bg-base);
     background-image: linear-gradient(rgba(5, 5, 5, 0.85), rgba(18, 18, 18, 0.95)), url('background.jpg');
     background-size: cover;
@@ -31,18 +34,19 @@ body {
     perspective: 1000px;
 }
 
-/* Navbar - Made slimmer and closer to top */
+/* Navbar - Pinned flush to the absolute top edge */
 nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(5, 5, 5, 0.9);
+    background: rgba(5, 5, 5, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
+    padding: 8px 5%;
     z-index: 1000;
 }
 
@@ -95,9 +99,9 @@ nav {
     transform: translateY(-2px);
 }
 
-/* Main Layout - Adjusted top spacing to fit slimmer nav */
+/* Main Layout */
 main {
-    margin-top: 65px;
+    margin-top: 50px;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
