@@ -17,7 +17,7 @@ document.addEventListener('mouseleave', () => {
 
 
 // --- Countdown Logic ---
-const launchDate = new Date("Oct 6, 2026 13:30:00 UTC").getTime();
+const launchDate = new Date("Oct 5, 2026 13:30:00 UTC").getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -45,7 +45,7 @@ updateCountdown();
 
 // --- IP Copy Logic ---
 function copyIP() {
-    navigator.clipboard.writeText("play.aegosmp.xyz");
+    navigator.clipboard.writeText("aegosmp.exaroton.me");
     const btn = document.querySelector(".btn-copy");
     btn.innerText = "Copied!";
     
