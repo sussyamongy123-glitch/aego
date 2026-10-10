@@ -1,6 +1,6 @@
 
 // =========================================
-// AEGO SMP — INTERACTIONS
+// AEGO SMP — SITE INTERACTIONS
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,14 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.setAttribute("aria-label", "Open navigation menu");
         menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        document.body.classList.remove("menu-open");
     }
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener("click", () => {
             const isOpen = navLinks.classList.toggle("open");
 
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
             menuToggle.setAttribute(
                 "aria-label",
                 isOpen ? "Close navigation menu" : "Open navigation menu"
@@ -36,8 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
             menuToggle.innerHTML = isOpen
                 ? '<i class="fas fa-times"></i>'
                 : '<i class="fas fa-bars"></i>';
-
-            document.body.classList.toggle("menu-open", isOpen);
         });
 
         navLinks.querySelectorAll("a").forEach((link) => {
@@ -45,7 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") closeMenu();
+            if (event.key === "Escape") {
+                closeMenu();
+            }
         });
 
         document.addEventListener("click", (event) => {
@@ -59,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         window.addEventListener("resize", () => {
-            if (window.innerWidth > 720) closeMenu();
+            if (window.innerWidth > 720) {
+                closeMenu();
+            }
         });
     }
 
@@ -73,13 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function showToast(message, isError = false) {
         if (!toast) return;
 
-        clearTimeout(toastTimeout);
+        window.clearTimeout(toastTimeout);
 
         toast.textContent = message;
         toast.classList.toggle("error", isError);
         toast.classList.add("show");
 
-        toastTimeout = setTimeout(() => {
+        toastTimeout = window.setTimeout(() => {
             toast.classList.remove("show");
         }, 2600);
     }
@@ -102,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.body.appendChild(textarea);
         textarea.select();
-        textarea.setSelectionRange(0, textarea.value.length);
+        textarea.setSelectionRange(0, text.length);
 
         let successful = false;
 
@@ -135,9 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (successful) {
-            const buttonText = copyButton.querySelector("span");
-
-            if (buttonText) buttonText.textContent = "Copied!";
             copyButton.innerHTML =
                 '<i class="fas fa-check"></i><span>Copied!</span>';
 
@@ -150,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             showToast("Server IP copied: " + SERVER_IP);
 
-            setTimeout(() => {
+            window.setTimeout(() => {
                 copyButton.innerHTML =
                     '<i class="fas fa-copy"></i><span>Copy IP</span>';
 
@@ -171,37 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -----------------------------------------
-    // Subtle 3D logo parallax
-    // -----------------------------------------
-
-    const logo = document.getElementById("parallaxLogo");
-    const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
-
-    if (
-        logo &&
-        window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-        !prefersReducedMotion.matches
-    ) {
-        logo.addEventListener("mousemove", (event) => {
-            const rect = logo.getBoundingClientRect();
-
-            const x = (event.clientX - rect.left) / rect.width - 0.5;
-            const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-            logo.style.transform =
-                `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 6}deg)`;
-        });
-
-        logo.addEventListener("mouseleave", () => {
-            logo.style.transform =
-                "perspective(700px) rotateY(0deg) rotateX(0deg)";
-        });
-    }
-
-    // -----------------------------------------
-    // Automatically update footer year
+    // Automatically update copyright year
     // -----------------------------------------
 
     const yearElement = document.getElementById("currentYear");
