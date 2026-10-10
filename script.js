@@ -1,56 +1,212 @@
-// --- Interactive 3D Parallax Logic ---
-const logoCard = document.getElementById('logoCard');
 
-// Track mouse movement to rotate the container
-document.addEventListener('mousemove', (e) => {
-    // Calculate rotation based on center of screen
-    const xAxis = (window.innerWidth / 2 - e.pageX) / 30; // Divide by higher number for subtler tilt
-    const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
-    
-    logoCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-});
+// =========================================
+// AEGO SMP — INTERACTIONS
+// =========================================
 
-// Reset rotation when mouse leaves window
-document.addEventListener('mouseleave', () => {
-    logoCard.style.transform = `rotateY(0deg) rotateX(0deg)`;
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const SERVER_IP = "aegosmp.xyz";
 
+    // -----------------------------------------
+    // Mobile navigation
+    // -----------------------------------------
 
-// --- Countdown Logic ---
-const launchDate = new Date("Oct 5, 2026 13:30:00 UTC").getTime();
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = launchDate - now;
+    function closeMenu() {
+        if (!menuToggle || !navLinks) return;
 
-    if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "<div class='live-text'>SERVER IS LIVE!</div>";
-        return;
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        document.body.classList.remove("menu-open");
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
 
-    document.getElementById("days").innerText = String(days).padStart(2, '0');
-    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-}
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+            menuToggle.innerHTML = isOpen
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
 
+            document.body.classList.toggle("menu-open", isOpen);
+        });
 
-// --- IP Copy Logic ---
-function copyIP() {
-    navigator.clipboard.writeText("aegosmp.exaroton.me");
-    const btn = document.querySelector(".btn-copy");
-    btn.innerText = "Copied!";
-    
-    // Reset button text after 2 seconds
-    setTimeout(() => {
-        btn.innerText = "Copy IP";
-    }, 2000);
-}
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeMenu();
+        });
+
+        document.addEventListener("click", (event) => {
+            if (
+                navLinks.classList.contains("open") &&
+                !navLinks.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 720) closeMenu();
+        });
+    }
+
+    // -----------------------------------------
+    // Toast notifications
+    // -----------------------------------------
+
+    const toast = document.getElementById("toast");
+    let toastTimeout;
+
+    function showToast(message, isError = false) {
+        if (!toast) return;
+
+        clearTimeout(toastTimeout);
+
+        toast.textContent = message;
+        toast.classList.toggle("error", isError);
+        toast.classList.add("show");
+
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2600);
+    }
+
+    // -----------------------------------------
+    // Copy server IP
+    // -----------------------------------------
+
+    const copyButton = document.getElementById("copyIp");
+    const copyFeedback = document.getElementById("copyFeedback");
+
+    async function fallbackCopy(text) {
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        textarea.style.top = "0";
+
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+
+        let successful = false;
+
+        try {
+            successful = document.execCommand("copy");
+        } catch {
+            successful = false;
+        }
+
+        textarea.remove();
+        return successful;
+    }
+
+    async function copyServerIP() {
+        let successful = false;
+
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(SERVER_IP);
+                successful = true;
+            } else {
+                successful = await fallbackCopy(SERVER_IP);
+            }
+        } catch {
+            try {
+                successful = await fallbackCopy(SERVER_IP);
+            } catch {
+                successful = false;
+            }
+        }
+
+        if (successful) {
+            const buttonText = copyButton.querySelector("span");
+
+            if (buttonText) buttonText.textContent = "Copied!";
+            copyButton.innerHTML =
+                '<i class="fas fa-check"></i><span>Copied!</span>';
+
+            copyButton.style.background = "#23794e";
+
+            if (copyFeedback) {
+                copyFeedback.textContent =
+                    "Server IP copied. See you in-game!";
+            }
+
+            showToast("Server IP copied: " + SERVER_IP);
+
+            setTimeout(() => {
+                copyButton.innerHTML =
+                    '<i class="fas fa-copy"></i><span>Copy IP</span>';
+
+                copyButton.style.background = "";
+            }, 2000);
+        } else {
+            if (copyFeedback) {
+                copyFeedback.textContent =
+                    "Copy failed. Please select and copy the IP manually.";
+            }
+
+            showToast("Please copy aegosmp.xyz manually.", true);
+        }
+    }
+
+    if (copyButton) {
+        copyButton.addEventListener("click", copyServerIP);
+    }
+
+    // -----------------------------------------
+    // Subtle 3D logo parallax
+    // -----------------------------------------
+
+    const logo = document.getElementById("parallaxLogo");
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
+    if (
+        logo &&
+        window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+        !prefersReducedMotion.matches
+    ) {
+        logo.addEventListener("mousemove", (event) => {
+            const rect = logo.getBoundingClientRect();
+
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+            logo.style.transform =
+                `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 6}deg)`;
+        });
+
+        logo.addEventListener("mouseleave", () => {
+            logo.style.transform =
+                "perspective(700px) rotateY(0deg) rotateX(0deg)";
+        });
+    }
+
+    // -----------------------------------------
+    // Automatically update footer year
+    // -----------------------------------------
+
+    const yearElement = document.getElementById("currentYear");
+
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});
