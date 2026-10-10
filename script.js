@@ -1,4 +1,3 @@
-
 // =========================================
 // AEGO SMP — SITE INTERACTIONS
 // =========================================
@@ -6,179 +5,121 @@
 document.addEventListener("DOMContentLoaded", () => {
     const SERVER_IP = "aegosmp.xyz";
 
-    // -----------------------------------------
     // Mobile navigation
-    // -----------------------------------------
+    const menuToggle = document.getElementById("mobileMenuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-
-    function closeMenu() {
-        if (!menuToggle || !navLinks) return;
-
-        navLinks.classList.remove("open");
+    function closeMobileMenu() {
+        if (!menuToggle || !mobileMenu) return;
+        mobileMenu.classList.remove("open");
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.setAttribute("aria-label", "Open navigation menu");
         menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
     }
 
-    if (menuToggle && navLinks) {
+    if (menuToggle && mobileMenu) {
         menuToggle.addEventListener("click", () => {
-            const isOpen = navLinks.classList.toggle("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen ? "Close navigation menu" : "Open navigation menu"
-            );
-
-            menuToggle.innerHTML = isOpen
+            const open = !mobileMenu.classList.contains("open");
+            mobileMenu.classList.toggle("open", open);
+            menuToggle.setAttribute("aria-expanded", String(open));
+            menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+            menuToggle.innerHTML = open
                 ? '<i class="fas fa-times"></i>'
                 : '<i class="fas fa-bars"></i>';
         });
 
-        navLinks.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", closeMenu);
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", closeMobileMenu);
         });
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape") {
-                closeMenu();
-            }
+            if (event.key === "Escape") closeMobileMenu();
         });
 
         document.addEventListener("click", (event) => {
             if (
-                navLinks.classList.contains("open") &&
-                !navLinks.contains(event.target) &&
+                mobileMenu.classList.contains("open") &&
+                !mobileMenu.contains(event.target) &&
                 !menuToggle.contains(event.target)
             ) {
-                closeMenu();
+                closeMobileMenu();
             }
         });
 
         window.addEventListener("resize", () => {
-            if (window.innerWidth > 720) {
-                closeMenu();
-            }
+            if (window.innerWidth > 720) closeMobileMenu();
         });
     }
 
-    // -----------------------------------------
-    // Toast notifications
-    // -----------------------------------------
-
-    const toast = document.getElementById("toast");
-    let toastTimeout;
-
-    function showToast(message, isError = false) {
-        if (!toast) return;
-
-        window.clearTimeout(toastTimeout);
-
-        toast.textContent = message;
-        toast.classList.toggle("error", isError);
-        toast.classList.add("show");
-
-        toastTimeout = window.setTimeout(() => {
-            toast.classList.remove("show");
-        }, 2600);
-    }
-
-    // -----------------------------------------
-    // Copy server IP
-    // -----------------------------------------
-
-    const copyButton = document.getElementById("copyIp");
-    const copyFeedback = document.getElementById("copyFeedback");
+    // Copy server IP from either copy button
+    const copyButtons = [
+        document.getElementById("copyIpButton"),
+        document.getElementById("copyIpButtonBottom")
+    ].filter(Boolean);
+    const feedback = document.getElementById("copyFeedback");
+    let feedbackTimer;
 
     async function fallbackCopy(text) {
         const textarea = document.createElement("textarea");
-
         textarea.value = text;
         textarea.setAttribute("readonly", "");
         textarea.style.position = "fixed";
         textarea.style.left = "-9999px";
         textarea.style.top = "0";
-
         document.body.appendChild(textarea);
         textarea.select();
-        textarea.setSelectionRange(0, text.length);
-
-        let successful = false;
-
+        textarea.setSelectionRange(0, textarea.value.length);
+        let copied = false;
         try {
-            successful = document.execCommand("copy");
+            copied = document.execCommand("copy");
         } catch {
-            successful = false;
+            copied = false;
         }
-
         textarea.remove();
-        return successful;
+        return copied;
     }
 
-    async function copyServerIP() {
-        let successful = false;
-
+    async function copyIP(button) {
+        let copied = false;
         try {
             if (navigator.clipboard && window.isSecureContext) {
                 await navigator.clipboard.writeText(SERVER_IP);
-                successful = true;
+                copied = true;
             } else {
-                successful = await fallbackCopy(SERVER_IP);
+                copied = await fallbackCopy(SERVER_IP);
             }
         } catch {
-            try {
-                successful = await fallbackCopy(SERVER_IP);
-            } catch {
-                successful = false;
-            }
+            copied = await fallbackCopy(SERVER_IP);
         }
 
-        if (successful) {
-            copyButton.innerHTML =
-                '<i class="fas fa-check"></i><span>Copied!</span>';
-
-            copyButton.style.background = "#23794e";
-
-            if (copyFeedback) {
-                copyFeedback.textContent =
-                    "Server IP copied. See you in-game!";
-            }
-
-            showToast("Server IP copied: " + SERVER_IP);
-
+        if (copied) {
+            if (feedback) feedback.textContent = "Copied! Paste aegosmp.xyz into Minecraft.";
+            const original = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+            button.disabled = true;
             window.setTimeout(() => {
-                copyButton.innerHTML =
-                    '<i class="fas fa-copy"></i><span>Copy IP</span>';
-
-                copyButton.style.background = "";
-            }, 2000);
+                button.innerHTML = original;
+                button.disabled = false;
+            }, 1800);
         } else {
-            if (copyFeedback) {
-                copyFeedback.textContent =
-                    "Copy failed. Please select and copy the IP manually.";
-            }
+            if (feedback) feedback.textContent = "Couldn't copy automatically. Please copy aegosmp.xyz manually.";
+        }
 
-            showToast("Please copy aegosmp.xyz manually.", true);
+        window.clearTimeout(feedbackTimer);
+        if (feedback) {
+            feedbackTimer = window.setTimeout(() => {
+                feedback.textContent = "";
+            }, 3500);
         }
     }
 
-    if (copyButton) {
-        copyButton.addEventListener("click", copyServerIP);
-    }
+    copyButtons.forEach((button) => {
+        button.addEventListener("click", () => copyIP(button));
+    });
 
-    // -----------------------------------------
-    // Automatically update copyright year
-    // -----------------------------------------
-
-    const yearElement = document.getElementById("currentYear");
-
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
+    // Update copyright year
+    const year = document.querySelector(".copyright");
+    if (year) {
+        year.textContent = `© ${new Date().getFullYear()} Aego SMP. Not affiliated with Mojang or Microsoft.`;
     }
 });
