@@ -5,89 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aego SMP | Your World. Your Story.</title>
-    <meta name="description" content="Enter Aego SMP, a custom Minecraft survival experience with open PvP, raiding, custom mechanics, and a growing community.">
-    <meta name="theme-color" content="#100b19">
+    <title>Aego SMP | Your World, Your Story</title>
+    <meta name="description" content="Join Aego SMP, a custom Minecraft survival server featuring open PvP, raiding, custom gameplay, and a community that makes every adventure count.">
+    <meta name="theme-color" content="#0b0910">
+
+    <link rel="canonical" href="https://aegosmp.xyz/">
+    <link rel="icon" type="image/png" href="skull.png">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aegosmp.xyz/">
-    <meta property="og:title" content="Aego SMP | Your World. Your Story.">
-    <meta property="og:description" content="Build your empire. Make alliances. Trust nobody. Join Aego SMP.">
+    <meta property="og:title" content="Aego SMP | Your World, Your Story">
+    <meta property="og:description" content="Build your empire, forge unlikely alliances, and make your enemies regret crossing your path.">
     <meta property="og:image" content="https://sussyamongy123-glitch.github.io/aego/skull.png">
 
-    <link rel="icon" type="image/png" href="skull.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="design.css">
 
     <script src="script.js" defer></script>
 </head>
-
 <body>
-    <div class="background-effects" aria-hidden="true">
-        <div class="pixel-grid"></div>
-        <div class="ambient-glow glow-one"></div>
-        <div class="ambient-glow glow-two"></div>
-    </div>
 
-    <header class="site-header">
-        <nav class="navbar container" aria-label="Main navigation">
-            <a class="brand" href="#home" aria-label="Aego SMP home">
-                <span class="brand-icon">
-                    <img src="skull.png" alt="">
-                </span>
-                <span>AEGO<span class="brand-light"> SMP</span></span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a class="brand" href="#home" aria-label="Aego SMP home">
+            <span class="brand-icon">
+                <img src="skull.png" alt="">
+            </span>
+            <span class="brand-name">AEGO <span>SMP</span></span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#hardware">Performance</a>
+            <a href="#rules">Rules</a>
+            <a
+                class="discord-button nav-discord"
+                href="https://discord.gg/mWYhVKnmfp"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="fab fa-discord"></i>
+                Discord
             </a>
+        </div>
+    </nav>
 
-            <button class="menu-toggle" id="menuToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false"
-                    aria-controls="navLinks">
-                <i class="fas fa-bars"></i>
-            </button>
+    <main id="home">
 
-            <div class="nav-links" id="navLinks">
-                <a href="#home">Home</a>
-                <a href="#features">Features</a>
-                <a href="#hardware">Performance</a>
-                <a href="#rules">Rules</a>
-                <a class="nav-discord"
-                   href="https://discord.gg/mWYhVKnmfp"
-                   target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-discord"></i> Discord
-                </a>
-            </div>
-        </nav>
-    </header>
+        <!-- Hero -->
+        <section class="hero page-width">
+            <div class="hero-copy">
 
-    <main>
-        <!-- HERO -->
-        <section class="hero container" id="home">
-            <div class="hero-content">
                 <div class="eyebrow">
                     <span class="status-dot"></span>
-                    <span>YOUR NEXT ADVENTURE STARTS HERE</span>
+                    YOUR NEXT ADVENTURE STARTS HERE
                 </div>
 
-                <div class="hero-logo" id="parallaxLogo">
-                    <div class="logo-halo"></div>
-                    <img class="hero-skull" src="skull.png" alt="Aego SMP skull emblem">
-                    <img class="hero-wordmark" src="aego.png" alt="Aego">
+                <div class="hero-logo" aria-label="Aego SMP logo">
+                    <img class="hero-skull" src="skull.png" alt="">
+                    <img class="hero-wordmark" src="aego.png" alt="Aego SMP">
                 </div>
 
-                <h1>YOUR WORLD.<br><span>YOUR STORY.</span></h1>
+                <h1>
+                    YOUR WORLD.<br>
+                    <span>YOUR STORY.</span>
+                </h1>
 
                 <p class="hero-description">
                     Not just another survival server. Build your empire,
-                    forge unlikely alliances, and make your enemies
-                    regret ever crossing your path.
+                    forge unlikely alliances, and make your enemies regret
+                    ever crossing your path.
                 </p>
 
-                <div class="hero-tags">
+                <div class="feature-tags">
                     <span><i class="fas fa-cubes"></i> Custom Survival</span>
-                    <span><i class="fas fa-khanda"></i> Open PvP</span>
+                    <span><i class="fas fa-crosshairs"></i> Open PvP</span>
                     <span><i class="fas fa-fire"></i> No Easy Mode</span>
                 </div>
 
@@ -97,277 +105,284 @@
                         Join the Adventure
                         <i class="fas fa-arrow-right button-arrow"></i>
                     </a>
-                    <a class="button button-secondary"
-                       href="https://discord.gg/mWYhVKnmfp"
-                       target="_blank" rel="noopener noreferrer">
+
+                    <a
+                        class="button button-secondary"
+                        href="https://discord.gg/mWYhVKnmfp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <i class="fab fa-discord"></i>
                         Join Discord
                     </a>
                 </div>
 
-                <div class="hero-footnote">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Survive smart. Trust carefully. Play your way.</span>
-                </div>
+                <p class="hero-note">
+                    <i class="fas fa-shield-halved"></i>
+                    Survive smart. Trust carefully. Play your way.
+                </p>
             </div>
 
-            <div class="hero-scene" aria-hidden="true">
-                <div class="scene-sun"></div>
-                <div class="scene-mountain mountain-back"></div>
-                <div class="scene-mountain mountain-front"></div>
-                <div class="scene-ground"></div>
+            <!-- Handmade CSS voxel landscape -->
+            <div class="world-scene" aria-label="Pixel-inspired Minecraft landscape">
+                <div class="scene-sky"></div>
 
-                <div class="floating-cube cube-one"></div>
-                <div class="floating-cube cube-two"></div>
-                <div class="floating-cube cube-three"></div>
+                <div class="pixel-sun"></div>
 
-                <div class="scene-label">
-                    <span class="scene-label-icon"><i class="fas fa-compass"></i></span>
-                    <span>
-                        <strong>THE WORLD AWAITS</strong>
-                        <small>Every block has a story.</small>
+                <div class="floating-block block-one"></div>
+                <div class="floating-block block-two"></div>
+                <div class="floating-block block-three"></div>
+
+                <div class="mountain-back"></div>
+                <div class="mountain-front"></div>
+
+                <div class="scene-ground">
+                    <span class="grass-edge"></span>
+                </div>
+
+                <div class="scene-caption">
+                    <span class="caption-icon">
+                        <i class="fas fa-compass"></i>
                     </span>
-                </div>
-            </div>
-        </section>
-
-        <!-- JOIN SERVER -->
-        <section class="join-section container" id="join">
-            <div class="join-card">
-                <div class="join-info">
-                    <div class="section-kicker">READY, PLAYER ONE?</div>
-                    <h2>Your adventure is <span>one IP away.</span></h2>
-                    <p>Open Minecraft, add our server, and jump into the action.</p>
-                </div>
-
-                <div class="server-connect">
-                    <div class="server-address">
-                        <div class="server-address-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <div class="server-address-text">
-                            <span>JAVA SERVER ADDRESS</span>
-                            <strong id="serverIp">aegosmp.xyz</strong>
-                        </div>
-                        <button class="copy-button" id="copyIp" type="button">
-                            <i class="fas fa-copy"></i>
-                            <span>Copy IP</span>
-                        </button>
+                    <div>
+                        <strong>THE WORLD AWAITS</strong>
+                        <p>Every block has a story.</p>
                     </div>
-                    <p class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></p>
                 </div>
             </div>
         </section>
 
-        <!-- FEATURES -->
-        <section class="section container" id="features">
+        <!-- Join / Server IP -->
+        <section class="join-panel page-width" id="join">
+            <div class="join-info">
+                <span class="section-kicker">READY, PLAYER ONE?</span>
+                <h2>Your adventure is <span>one IP away.</span></h2>
+                <p>Open Minecraft, add our server, and jump into the action.</p>
+            </div>
+
+            <div class="server-address">
+                <span class="address-icon">
+                    <i class="fas fa-cube"></i>
+                </span>
+
+                <div class="address-info">
+                    <span class="address-label">JAVA SERVER ADDRESS</span>
+                    <strong id="serverIp">aegosmp.xyz</strong>
+                </div>
+
+                <button class="copy-button" id="copyIp" type="button">
+                    <i class="fas fa-copy"></i>
+                    <span>Copy IP</span>
+                </button>
+            </div>
+
+            <p class="copy-feedback" id="copyFeedback" aria-live="polite"></p>
+        </section>
+
+        <!-- Features -->
+        <section class="content-section page-width" id="features">
             <div class="section-heading">
                 <div>
-                    <div class="section-kicker">BUILT DIFFERENT</div>
-                    <h2>More than <span>survival.</span></h2>
+                    <span class="section-kicker">WHAT MAKES US DIFFERENT</span>
+                    <h2>Survival, <span>your way.</span></h2>
                 </div>
-                <p>Every session is a new story. How yours unfolds is up to you.</p>
+                <p>No scripted adventures. No guaranteed safety.
+                   Just a world where your choices matter.</p>
             </div>
 
             <div class="features-grid">
                 <article class="feature-card">
-                    <div class="feature-top">
-                        <div class="feature-icon purple">
-                            <i class="fas fa-wand-magic-sparkles"></i>
-                        </div>
-                        <span class="feature-number">01</span>
-                    </div>
-                    <h3>Custom Gameplay</h3>
-                    <p>Discover custom mechanics, unique items, and plugins that add new depth to your survival journey.</p>
-                    <div class="feature-bottom"><span></span> MADE FOR ADVENTURERS</div>
+                    <span class="feature-icon">
+                        <i class="fas fa-hammer"></i>
+                    </span>
+                    <span class="card-number">01 / BUILD</span>
+                    <h3>Make It Yours</h3>
+                    <p>
+                        Gather resources, create a base, build a kingdom,
+                        and leave your mark on the world.
+                    </p>
                 </article>
 
                 <article class="feature-card">
-                    <div class="feature-top">
-                        <div class="feature-icon green">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <span class="feature-number">02</span>
-                    </div>
-                    <h3>Real Community</h3>
-                    <p>Team up, build settlements, trade resources, form rivalries, and leave your mark on the world.</p>
-                    <div class="feature-bottom"><span></span> YOUR PEOPLE. YOUR LEGACY.</div>
+                    <span class="feature-icon">
+                        <i class="fas fa-khanda"></i>
+                    </span>
+                    <span class="card-number">02 / FIGHT</span>
+                    <h3>Trust Nobody</h3>
+                    <p>
+                        PvP, traps, raids, and shifting alliances.
+                        Protect what matters and choose your battles.
+                    </p>
                 </article>
 
                 <article class="feature-card">
-                    <div class="feature-top">
-                        <div class="feature-icon orange">
-                            <i class="fas fa-khanda"></i>
+                    <span class="feature-icon">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                    </span>
+                    <span class="card-number">03 / EXPLORE</span>
+                    <h3>Beyond Vanilla</h3>
+                    <p>
+                        Custom mechanics and carefully selected plugins
+                        add new possibilities to the survival experience.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Performance / Hardware -->
+        <section class="content-section page-width" id="hardware">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">BUILT FOR THE GRIND</span>
+                    <h2>Performance <span>that matters.</span></h2>
+                </div>
+                <p>More time exploring, building, and fighting.
+                   Less time waiting on the server.</p>
+            </div>
+
+            <div class="hardware-panel">
+                <div class="hardware-intro">
+                    <span class="hardware-mark">
+                        <i class="fas fa-server"></i>
+                    </span>
+                    <div>
+                        <h3>Server specifications</h3>
+                        <p>Our configured hosting resources.</p>
+                    </div>
+                </div>
+
+                <div class="hardware-grid">
+                    <div class="hardware-item">
+                        <i class="fas fa-microchip"></i>
+                        <div>
+                            <span>PROCESSOR</span>
+                            <strong>AMD Ryzen 9 9950X</strong>
                         </div>
-                        <span class="feature-number">03</span>
                     </div>
-                    <h3>Risk & Reward</h3>
-                    <p>Open PvP, traps, and raiding make every expedition exciting. Keep your friends close and your loot closer.</p>
-                    <div class="feature-bottom"><span></span> SURVIVAL ISN'T SAFE</div>
-                </article>
+
+                    <div class="hardware-item">
+                        <i class="fas fa-memory"></i>
+                        <div>
+                            <span>MEMORY</span>
+                            <strong>8 GB DDR5</strong>
+                        </div>
+                    </div>
+
+                    <div class="hardware-item">
+                        <i class="fas fa-hard-drive"></i>
+                        <div>
+                            <span>STORAGE</span>
+                            <strong>20 GB NVMe SSD</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="hardware-disclaimer">
+                    Specifications reflect the hosting details provided by the server owner.
+                </p>
             </div>
         </section>
 
-        <!-- EXPERIENCE BANNER -->
-        <section class="world-banner container">
-            <div class="world-banner-content">
-                <div class="section-kicker">THE WORLD IS YOURS</div>
-                <h2>Build something.<br><span>Defend everything.</span></h2>
-                <p>Start with nothing. Gather your resources. Make your name legendary.</p>
-                <a class="text-link" href="#join">
-                    Enter Aego SMP <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="world-visual" aria-hidden="true">
-                <div class="world-orb"></div>
-                <div class="voxel voxel-a"></div>
-                <div class="voxel voxel-b"></div>
-                <div class="voxel voxel-c"></div>
-                <div class="voxel voxel-d"></div>
-                <div class="voxel voxel-e"></div>
-            </div>
-        </section>
-
-        <!-- HARDWARE -->
-        <section class="section container" id="hardware">
+        <!-- Rules -->
+        <section class="content-section page-width" id="rules">
             <div class="section-heading">
                 <div>
-                    <div class="section-kicker">UNDER THE HOOD</div>
-                    <h2>Performance <span>matters.</span></h2>
+                    <span class="section-kicker">KNOW BEFORE YOU JOIN</span>
+                    <h2>Play fair. <span>Play smart.</span></h2>
                 </div>
-                <p>Our listed server specifications are built to support your adventures.</p>
+                <p>The world can be unforgiving. The rules are straightforward.</p>
             </div>
 
-            <div class="hardware-grid">
-                <article class="hardware-card">
-                    <div class="hardware-icon"><i class="fas fa-microchip"></i></div>
+            <div class="rules-panel">
+                <div class="rule-item">
+                    <span class="rule-icon rule-danger">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </span>
                     <div>
-                        <span class="hardware-label">PROCESSOR</span>
-                        <h3>AMD Ryzen 9</h3>
-                        <p>9950X</p>
+                        <h3>Stealing and raiding are allowed</h3>
+                        <p>Bases and loot are fair game. Protect your valuables and plan accordingly.</p>
                     </div>
-                    <i class="fas fa-check-circle hardware-check"></i>
-                </article>
-
-                <article class="hardware-card">
-                    <div class="hardware-icon"><i class="fas fa-memory"></i></div>
-                    <div>
-                        <span class="hardware-label">MEMORY</span>
-                        <h3>8 GB DDR5</h3>
-                        <p>High-speed RAM</p>
-                    </div>
-                    <i class="fas fa-check-circle hardware-check"></i>
-                </article>
-
-                <article class="hardware-card">
-                    <div class="hardware-icon"><i class="fas fa-hard-drive"></i></div>
-                    <div>
-                        <span class="hardware-label">STORAGE</span>
-                        <h3>20 GB NVMe</h3>
-                        <p>SSD storage space</p>
-                    </div>
-                    <i class="fas fa-check-circle hardware-check"></i>
-                </article>
-            </div>
-            <p class="hardware-note">
-                <i class="fas fa-info-circle"></i>
-                Specifications shown are the server details provided by the owner.
-                Actual performance depends on server load and configuration.
-            </p>
-        </section>
-
-        <!-- RULES -->
-        <section class="section container" id="rules">
-            <div class="section-heading">
-                <div>
-                    <div class="section-kicker">KNOW THE GAME</div>
-                    <h2>Play by the <span>rules.</span></h2>
+                    <span class="rule-tag">ALLOWED</span>
                 </div>
-                <p>Survival can be ruthless. Keep the competition fair.</p>
-            </div>
 
-            <div class="rules-grid">
-                <article class="rule-card">
-                    <div class="rule-icon danger"><i class="fas fa-skull-crossbones"></i></div>
+                <div class="rule-item">
+                    <span class="rule-icon rule-danger">
+                        <i class="fas fa-crosshairs"></i>
+                    </span>
                     <div>
-                        <h3>Raiding is allowed</h3>
-                        <p>Bases and loot are fair game. Protect your valuables and be ready for consequences.</p>
+                        <h3>Open PvP and traps</h3>
+                        <p>Combat, ambushes, and traps are part of the experience. Trust carefully.</p>
                     </div>
-                    <span class="rule-tag danger-tag">HIGH RISK</span>
-                </article>
+                    <span class="rule-tag">ALLOWED</span>
+                </div>
 
-                <article class="rule-card">
-                    <div class="rule-icon danger"><i class="fas fa-khanda"></i></div>
+                <div class="rule-item">
+                    <span class="rule-icon">
+                        <i class="fas fa-ban"></i>
+                    </span>
                     <div>
-                        <h3>Open PvP & traps</h3>
-                        <p>Ambushes, traps, and non-consensual combat are permitted. Stay alert out there.</p>
-                    </div>
-                    <span class="rule-tag danger-tag">NO SAFE BETS</span>
-                </article>
-
-                <article class="rule-card">
-                    <div class="rule-icon safe"><i class="fas fa-ban"></i></div>
-                    <div>
-                        <h3>No cheats or exploits</h3>
+                        <h3>No hacks or exploits</h3>
                         <p>Hacked clients, X-ray, duplication exploits, and unfair advantages are prohibited.</p>
                     </div>
-                    <span class="rule-tag safe-tag">FAIR PLAY</span>
-                </article>
+                    <span class="rule-tag rule-tag-strict">PROHIBITED</span>
+                </div>
 
-                <article class="rule-card">
-                    <div class="rule-icon safe"><i class="fas fa-comments"></i></div>
+                <div class="rule-item">
+                    <span class="rule-icon">
+                        <i class="fas fa-comments"></i>
+                    </span>
                     <div>
                         <h3>Respect the community</h3>
-                        <p>Hate speech, harassment, severe toxicity, and spam have no place here.</p>
+                        <p>Harassment, hate speech, and spam are not welcome. Keep the community playable for everyone.</p>
                     </div>
-                    <span class="rule-tag safe-tag">BE DECENT</span>
-                </article>
+                    <span class="rule-tag rule-tag-strict">REQUIRED</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final call to action -->
+        <section class="final-cta page-width">
+            <div class="cta-copy">
+                <span class="section-kicker">YOUR NEXT CHAPTER STARTS HERE</span>
+                <h2>Ready to make <span>your mark?</span></h2>
+                <p>Bring your friends. Build something worth defending.</p>
             </div>
 
-            <div class="rules-disclaimer">
-                <i class="fas fa-scroll"></i>
-                <p>These are the main guidelines. Check our Discord for any additional rules or updates.</p>
-                <a href="https://discord.gg/mWYhVKnmfp" target="_blank" rel="noopener noreferrer">
-                    View Discord <i class="fas fa-arrow-up-right-from-square"></i>
+            <div class="cta-actions">
+                <a class="button button-primary" href="#join">
+                    <i class="fas fa-cube"></i>
+                    Get the Server IP
+                </a>
+                <a
+                    class="button button-secondary"
+                    href="https://discord.gg/mWYhVKnmfp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <i class="fab fa-discord"></i>
+                    Join the Community
                 </a>
             </div>
         </section>
 
-        <!-- FINAL CTA -->
-        <section class="final-cta container">
-            <div class="cta-emblem">
-                <img src="skull.png" alt="">
-            </div>
-            <div class="section-kicker">YOUR NEXT CHAPTER BEGINS NOW</div>
-            <h2>Ready to make <span>history?</span></h2>
-            <p>There's a world waiting to be conquered. Will you be part of it?</p>
-            <a class="button button-primary" href="#join">
-                <i class="fas fa-cube"></i> Join Aego SMP
-            </a>
-        </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-inner container">
-            <a class="brand footer-brand" href="#home">
-                <span class="brand-icon"><img src="skull.png" alt=""></span>
-                <span>AEGO<span class="brand-light"> SMP</span></span>
-            </a>
+    <footer class="footer">
+        <a class="brand footer-brand" href="#home">
+            <span class="brand-icon">
+                <img src="skull.png" alt="">
+            </span>
+            <span class="brand-name">AEGO <span>SMP</span></span>
+        </a>
 
-            <p>Craft your story. Own your world.</p>
+        <p>Built for adventure. Remember your first block.</p>
 
-            <a class="footer-discord"
-               href="https://discord.gg/mWYhVKnmfp"
-               target="_blank" rel="noopener noreferrer"
-               aria-label="Join Aego SMP on Discord">
-                <i class="fab fa-discord"></i>
-            </a>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <span id="currentYear">2026</span> Aego SMP. Not affiliated with Mojang or Microsoft.</p>
-        </div>
+        <span class="copyright">
+            &copy; <span id="currentYear">2026</span> Aego SMP
+        </span>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 </body>
 </html>
